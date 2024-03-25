@@ -112,7 +112,8 @@ UiT_list = [
 FHI_list=[
     'Norwegian Institute of Public Health (NIPH)',
     'NIPH',
-    'NORWEGIAN INSTITUTE OF PUBLIC HEALTH'
+    'NORWEGIAN INSTITUTE OF PUBLIC HEALTH',
+    'Folkehelseinstituttet (FHI), Norway'
 ]
 
 centres = {
