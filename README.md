@@ -1,1 +1,3 @@
-# monitoring_sra-samples_EBIsearch
+# Monitoring sra-samples using EBIsearch
+
+`conda env create --file EBIsearch_environment.yml`
