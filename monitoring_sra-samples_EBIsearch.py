@@ -44,7 +44,7 @@ fields = pd.json_normalize(df["fields"]) # extract the variables for plotting
 for column in fields.columns: # change from list to standard variable
     fields[column]=fields[column].apply(lambda x: x[0] if len(x) > 0 else None)
 # change to proper date/time type 
-fields["last_updated_date"] = fields["last_updated_date"].astype("datetime64")
+fields["last_updated_date"] = fields["last_updated_date"].astype("datetime64[ns]")
 
 # making the centre name smoother
 UiO_list = [
