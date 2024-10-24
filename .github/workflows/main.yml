@@ -1,0 +1,28 @@
+name: Monitoring Norwegian submissions to SRA samples
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  fetch-and-plot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Conda
+        uses: goanpeca/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          
+      - name: Create and activate Conda environment
+        run: |
+          conda env create -f EBIsearch_environment.yml
+          conda activate EBIsearch
+          
+      - name: Run Python script
+        run: |
+          python monitoring_sra-samples_EBIsearch.py
+    
