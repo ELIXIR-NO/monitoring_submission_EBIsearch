@@ -5,24 +5,23 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:      # Manual trigger
 
-jobs:
-  fetch-and-plot:
-    runs-on: ubuntu-latest
+name: conda test 2
 
+on:
+  workflow_dispatch
+
+jobs:
+  default-shell:
+    name: Default shell
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        
-      - name: Set up Conda environment
-        uses: conda-incubator/setup-miniconda@v3
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
         with:
-          auto-update-conda: true
-        run: |
-          conda env create -f EBIsearch_environment.yml
-          conda activate EBIsearch
-          
-      - name: Run Python script
-        run: |
-          conda activate EBIsearch
-          python monitoring_sra-samples_EBIsearch.py
+          activate-environment: EBIsearch
+          environment-file: EBIsearch_environment.yml
+      - run: python monitoring_sra-samples_EBIsearch.py
     
