@@ -5,7 +5,7 @@ on:
   
 jobs:
   test:
-    name: test conda
+    name: test conda 2
     runs-on: ubuntu-latest
     
     steps:
