@@ -20,11 +20,13 @@ jobs:
           
       - name: Create and activate Conda environment
         run: |
+          source $HOME/miniconda/etc/profile.d/conda.sh
           conda env create -f EBIsearch_environment.yml
-          conda init
           conda activate EBIsearch
           
       - name: Run Python script
         run: |
+          source $HOME/miniconda/etc/profile.d/conda.sh
+          conda activate EBIsearch
           python monitoring_sra-samples_EBIsearch.py
     
