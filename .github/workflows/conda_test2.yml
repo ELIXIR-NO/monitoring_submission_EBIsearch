@@ -14,11 +14,5 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
-      - name: Conda info
-        shell: bash -el {0}
-        run: conda info
-      - name: Conda list
-        shell: pwsh
-        run: conda list
       - name: create environent from file
         run: conda env create -f EBIsearch_environment.yml
