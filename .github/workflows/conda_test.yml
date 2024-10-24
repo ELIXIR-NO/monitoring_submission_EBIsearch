@@ -1,0 +1,21 @@
+name: conda test
+
+on:
+  workflow_dispatch
+  
+jobs:
+  test:
+    name: test conda
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          #python-version:
+      - name: Conda info
+        shell: bash -el {0}
+        run: conda info
+      - name: Conda list
+        shell: pwsh
+        run: conda list
