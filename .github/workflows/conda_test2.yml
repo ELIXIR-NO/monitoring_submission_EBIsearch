@@ -16,3 +16,5 @@ jobs:
           auto-update-conda: true
       - name: create environent from file
         run: conda env create -f EBIsearch_environment.yml
+      - name: activate environment
+        run: conda activate EBIsearch
