@@ -1,4 +1,4 @@
-name: conda test
+name: conda test 2
 
 on:
   workflow_dispatch
