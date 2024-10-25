@@ -21,17 +21,11 @@ jobs:
       - run: | 
           python monitoring_sra-samples_EBIsearch.py
           ls -ltr ./plots/
-      #- name: Save Plot Artifacts
-       # uses: actions/upload-artifact@v3
-       # with:
-       #   name: plot-files
-       #   path: ./plots/
-     # - uses: actions/checkout@master
-     #   with:
-     #     persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-     #     fetch-depth: 0             # otherwise, you will fail to push refs to dest repo
-     # - name: Commit & Push changes
-     #   uses: actions-js/push@master
-     #   with:
-     #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    
+      - uses: actions/checkout@master
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0             # otherwise, you will fail to push refs to dest repo
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
