@@ -9,6 +9,8 @@ jobs:
   default-shell:
     name: Default shell
     runs-on: "ubuntu-latest"
+    permissions:
+      contents: write
     defaults:
       run:
         shell: bash -el {0}
@@ -27,3 +29,4 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: "Automated commit"
