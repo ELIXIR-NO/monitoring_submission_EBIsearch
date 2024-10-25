@@ -154,7 +154,7 @@ plt.xticks(rotation=90)
 plt.xlim(2015.5, 2023.5)
 
 ax.legend()
-plt.savefig('stacked_bar_plot.png', bbox_inches='tight')
+plt.savefig('./plots/stacked_bar_plot.png', bbox_inches='tight')
 
 fig, ax = plt.subplots()
 
@@ -169,4 +169,4 @@ plt.xticks(rotation=90)
 plt.xlim(2015.5, 2023.5)
 
 ax.legend()
-plt.savefig('bar_plot_FHI.png', bbox_inches='tight')
+plt.savefig('./plots/bar_plot_FHI.png', bbox_inches='tight')
