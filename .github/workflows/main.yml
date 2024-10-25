@@ -19,4 +19,12 @@ jobs:
           activate-environment: EBIsearch
           environment-file: EBIsearch_environment.yml
       - run: python monitoring_sra-samples_EBIsearch.py
+      - uses: actions/checkout@master
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0             # otherwise, you will fail to push refs to dest repo
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
     
