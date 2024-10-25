@@ -19,12 +19,17 @@ jobs:
           activate-environment: EBIsearch
           environment-file: EBIsearch_environment.yml
       - run: python monitoring_sra-samples_EBIsearch.py
+      - name: Save Plot Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: plot-files
+          path: ./plots/
       - uses: actions/checkout@master
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0             # otherwise, you will fail to push refs to dest repo
       - name: check new files are created
-        run: ls -ltr
+        run: ls -ltr ./plots/
       - name: Create local changes
         run: git add stacked_bar_plot.png
       - name: Commit & Push changes
