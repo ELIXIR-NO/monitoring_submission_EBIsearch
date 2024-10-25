@@ -6,6 +6,7 @@ import requests
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 def get_api_url(n_size, j_page,fields):
     base = "https://www.ebi.ac.uk/ebisearch/ws/rest/sra-sample?query=country:Norway"
@@ -170,3 +171,4 @@ plt.xlim(2015.5, 2023.5)
 
 ax.legend()
 plt.savefig('./plots/bar_plot_FHI.png', bbox_inches='tight')
+os.system("ls -ltr ./plots/")
