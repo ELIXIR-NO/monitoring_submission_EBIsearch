@@ -14,9 +14,10 @@ jobs:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@master
-          with:
-            persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-            fetch-depth: 0             # otherwise, you will fail to push refs to dest repo      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0             # otherwise, you will fail to push refs to dest repo      - uses: conda-incubator/setup-miniconda@v3
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: EBIsearch
           environment-file: EBIsearch_environment.yml
