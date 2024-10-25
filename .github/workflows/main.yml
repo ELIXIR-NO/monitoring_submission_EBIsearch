@@ -13,18 +13,15 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-      - uses: actions/checkout@v4
-      - uses: conda-incubator/setup-miniconda@v3
+      - uses: actions/checkout@master
+          with:
+            persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+            fetch-depth: 0             # otherwise, you will fail to push refs to dest repo      - uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: EBIsearch
           environment-file: EBIsearch_environment.yml
       - run: | 
           python monitoring_sra-samples_EBIsearch.py
-          ls -ltr ./plots/
-      - uses: actions/checkout@master
-        with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-          fetch-depth: 0             # otherwise, you will fail to push refs to dest repo
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
