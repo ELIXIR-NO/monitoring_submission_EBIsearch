@@ -129,44 +129,44 @@ for column in fields.columns: # change from list to standard variable
 fields["last_updated_date"] = fields["last_updated_date"].astype("datetime64[ns]")
 
 # Grouping the data to plot into a unique dataframe, setting to 0. entries lacking data
-data2plot={}
-for centre in centres.keys():
-    data2plot[centre]=fields[fields["center_name"]==centre].groupby(fields["last_updated_date"].dt.year).count()["center_name"]
-data2plot = pd.DataFrame(data2plot)
-
-for centre in data2plot.columns:
-    data2plot[centre] = [0 if np.isnan(value) else value for value in data2plot[centre]]
-    data2plot[centre]=data2plot[centre].astype(int)
-data2plot.index=data2plot.index.astype(int)
-
+#data2plot={}
+#for centre in centres.keys():
+#    data2plot[centre]=fields[fields["center_name"]==centre].groupby(fields["last_updated_date"].dt.year).count()["center_name"]
+#data2plot = pd.DataFrame(data2plot)
+#
+#for centre in data2plot.columns:
+#    data2plot[centre] = [0 if np.isnan(value) else value for value in data2plot[centre]]
+#    data2plot[centre]=data2plot[centre].astype(int)
+#data2plot.index=data2plot.index.astype(int)
+#
 # stacked-bars plot universities
-fig, ax = plt.subplots()
+#fig, ax = plt.subplots()
+#
+#bottom = 0.
+#for centre in data2plot.columns:
+#    if centre!="FHI":
+#        ax.bar(data2plot.index, data2plot[centre], bottom = bottom, label=centre)
+#        bottom=np.add(bottom, data2plot[centre])
+#    
+#plt.xlabel('YEAR')  # Set the label for the x-axis
+#plt.ylabel('# samples submitted')  # Set the label for the y-axis
+#plt.xticks(rotation=90)
+#plt.xlim(2015.5, 2023.5)
 
-bottom = 0.
-for centre in data2plot.columns:
-    if centre!="FHI":
-        ax.bar(data2plot.index, data2plot[centre], bottom = bottom, label=centre)
-        bottom=np.add(bottom, data2plot[centre])
-    
-plt.xlabel('YEAR')  # Set the label for the x-axis
-plt.ylabel('# samples submitted')  # Set the label for the y-axis
-plt.xticks(rotation=90)
-plt.xlim(2015.5, 2023.5)
-
-ax.legend()
-plt.savefig('./plots/stacked_bar_plot.png', bbox_inches='tight')
-
-fig, ax = plt.subplots()
-
+#ax.legend()
+#plt.savefig('./plots/stacked_bar_plot.png', bbox_inches='tight')
+#
+#fig, ax = plt.subplots()
+#
 # bar plot for FHI
-centre="FHI"
-ax.bar(data2plot.index, data2plot[centre], label=centre)
-bottom=np.add(bottom, data2plot[centre])
-    
-plt.xlabel('YEAR')  # Set the label for the x-axis
-plt.ylabel('# samples submitted')  # Set the label for the y-axis
-plt.xticks(rotation=90)
-plt.xlim(2015.5, 2023.5)
-
-ax.legend()
-plt.savefig('./plots/bar_plot_FHI.png', bbox_inches='tight')
+#centre="FHI"
+#ax.bar(data2plot.index, data2plot[centre], label=centre)
+#bottom=np.add(bottom, data2plot[centre])
+#    
+#plt.xlabel('YEAR')  # Set the label for the x-axis
+#plt.ylabel('# samples submitted')  # Set the label for the y-axis
+#plt.xticks(rotation=90)
+#plt.xlim(2015.5, 2023.5)
+#
+#ax.legend()
+#plt.savefig('./plots/bar_plot_FHI.png', bbox_inches='tight')
