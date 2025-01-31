@@ -120,13 +120,19 @@ n_pages = get_dataset_size()//points_perpage # pages to get the whole database
 fields = ["center_name","last_updated_date"] # fields for plotting
 entries = get_entries(points_perpage,n_pages,fields)
 
-# polish the data for plotting
+# polish the data
 df=pd.DataFrame(entries) 
-fields = pd.json_normalize(df["fields"]) # extract the variables for plotting
-for column in fields.columns: # change from list to standard variable
-    fields[column]=fields[column].apply(lambda x: x[0] if len(x) > 0 else None)
-# change to proper date/time type 
-fields["last_updated_date"] = fields["last_updated_date"].astype("datetime64[ns]")
+fields = pd.json_normalize(df["fields"])
+for column in fields.columns:
+    df[column] = fields[column]
+    df[column] = df[column].apply(lambda x: x[0] if len(x) > 0 else None)
+df = df.drop(["source","acc","fields"], axis=1) # clean the dataframe to minimise output
+df = df.set_index("id") # index by id for possible cross-referencing
+df["last_updated_date"] = df["last_updated_date"].astype("datetime64[ns]")# change type to datetime
+df=standardise_centre(df)
+df=df[df["center_name"].isin(["UiO","UiB","UiT","NMBU","NTNU","FHI"])] # filter data from Norwegian inst.
+df=df.dropna() # remove lines with missing data
+df.to_csv("data/data.csv")
 
 # Grouping the data to plot into a unique dataframe, setting to 0. entries lacking data
 #data2plot={}
