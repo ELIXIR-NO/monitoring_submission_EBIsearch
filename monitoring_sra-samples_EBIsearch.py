@@ -131,7 +131,7 @@ df = df.set_index("id") # index by id for possible cross-referencing
 df["last_updated_date"] = df["last_updated_date"].astype("datetime64[ns]")# change type to datetime
 df=standardise_centre(df)
 df=df[df["center_name"].isin(["UiO","UiB","UiT","NMBU","NTNU","FHI"])] # filter data from Norwegian inst.
-df=df.dropna() # remove lines with missing data
+df=df.dropna().sort_index() # remove lines with missing data and sort by index (id)
 df.to_csv("data/data.csv")
 
 # Grouping the data to plot into a unique dataframe, setting to 0. entries lacking data
